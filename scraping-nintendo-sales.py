@@ -1,6 +1,7 @@
-from bs4 import BeautifulSoup
-from selenium import webdriver
+from bs4 import BeautifulSoup # library used export data from web content
+from selenium import webdriver # library used to run the web browser
 
+# calculate discount %
 def percentile(ori_price,sale_price):
     return (1-(sale_price/ori_price))*100
 
@@ -12,9 +13,11 @@ driver.get(sale_url)
 res = driver.execute_script("return document.documentElement.outerHTML")
 driver.quit()
 
+# parser the web content
 soup = BeautifulSoup(res, 'html.parser')
 game_list = soup.find_all('ul',{'class':'game-list-results-container'})
 
+# create a csv file to store web content
 filename = 'table.csv'
 f = open(filename,'w')
 
